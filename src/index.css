@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+     /* Normalize */
+     width: 100vw;
+     height: 100vh;
+     padding: 0;
+     margin: 0;
+
+     /* Gradient/Cian */
+     background: linear-gradient(135deg, #ac53ff 0%, #4439ff 100%);
+
+     /* Center Items */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.title {
+     margin: 6px;
+     /* Heading/H5 */
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 600;
+     font-size: 18px;
+     line-height: 32px;
+
+     /* identical to box height, or 178% */
+
+     /* Dark/Alpha_80 */
+     color: rgba(29, 31, 38, 0.8);
+}
+
+.sub_title {
+     /* Paragraph/P5 */
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 22px;
+     /* or 157% */
+
+     color: rgba(29, 31, 38, 0.8);
+}
