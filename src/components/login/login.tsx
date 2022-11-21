@@ -18,7 +18,7 @@ function Login() {
 
      const onSubmit: SubmitHandler<loginProps> = async (data) => {
           if (errorEmail === true) {
-               alert('resuelve los errores');
+               return;
           } else {
                setLoading(true);
                let dataUser = await login(data);
