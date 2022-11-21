@@ -1,5 +1,8 @@
+import { profileProps } from '../../types/profile';
+
 function Profile() {
-     return <div>Profile TBD</div>;
+// { name, avatar }: profileProps
+     return <div>{/* {name} {avatar} */}</div>;
 }
 
 export default Profile;

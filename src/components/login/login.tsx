@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { login } from '../../api/index';
+import { loginProps } from '../../types/login'; //{email: string; password: string;}
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './login.module.css';
-
-type Inputs = {
-     email: string;
-     password: string;
-};
 
 function Login() {
      const {
@@ -13,19 +10,30 @@ function Login() {
           formState: { errors },
           handleSubmit,
           watch,
-     } = useForm<Inputs>();
+     } = useForm<loginProps>();
 
      const [errorEmail, setErrorEmail] = useState(false);
 
-     const onSubmit: SubmitHandler<Inputs> = (data) => {
+     const [loading, setLoading] = useState(false);
+
+     const onSubmit: SubmitHandler<loginProps> = async (data) => {
           if (errorEmail === true) {
-               console.log(errors);
+               alert('resuelve los errores');
           } else {
-               console.log(data);
+               setLoading(true);
+               let dataUser = await login(data);
+               if (dataUser.error) {
+                    setLoading(false);
+                    setErrorEmail(true);
+                    return alert(dataUser.error);
+               } else {
+                    setLoading(false);
+                    return console.log(dataUser);
+               }
           }
      };
 
-     // Callback version of watch.  It's your responsibility to unsubscribe when done.
+     // Callback version of watch
      React.useEffect(() => {
           let email = watch('email');
 
@@ -87,9 +95,13 @@ function Login() {
                     </div>
                </div>
 
-               <button className={styles.button} type="submit">
-                    Login
-               </button>
+               {loading === false ? (
+                    <button className={styles.button} type="submit">
+                         Login
+                    </button>
+               ) : (
+                    <div className={styles.button}>Loading...</div>
+               )}
           </form>
      );
 }
