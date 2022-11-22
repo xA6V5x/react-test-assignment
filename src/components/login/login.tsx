@@ -126,7 +126,7 @@ function Login() {
                </div>
 
                {loading === false ? (
-                    <button className={styles.button} type="submit">
+                    <button className="button" type="submit">
                          <label>Login</label>
                          <svg
                               width="14"
