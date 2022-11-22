@@ -1,0 +1,29 @@
+.container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     width: 180px;
+     height: 48px;
+
+     font-family: 'Inter';
+
+     background: #2f7bff;
+     border-radius: 12px;
+     border: none;
+}
+
+.container svg {
+     z-index: 10;
+     animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+     0% {
+          transform: rotate(0deg);
+     }
+
+     100% {
+          transform: rotate(360deg);
+     }
+}
