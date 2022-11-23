@@ -81,5 +81,4 @@ body {
 .button label {
      cursor: pointer;
      pointer-events: none;
-     margin-right: 10px;
 }

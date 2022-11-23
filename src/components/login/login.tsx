@@ -128,7 +128,7 @@ function Login({ handleSetState }: setStateApp) {
 
                {loading === false ? (
                     <button className="button" type="submit">
-                         <label>Login</label>
+                         <label style={{ marginRight: '10px' }}>Login</label>
                          <svg
                               width="14"
                               height="12"
