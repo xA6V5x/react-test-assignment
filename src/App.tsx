@@ -4,12 +4,21 @@ import Profile from './components/profile/profile';
 import { profileProps } from './types/profile';
 
 function App() {
-     let userProps = { avatar: '/avatar.jpeg', name: 'Elon' };
+     let userInitial = { name: '', avatar: '' };
 
-     const [user, setUser] = useState(userProps);
+     const [user, setUser] = useState(userInitial);
+
+     const handleSetState = (user: profileProps) => {
+          setUser(user);
+     };
 
      //  return user ? <div>Profile TBD</div> : <div>Login TBD</div>;
-     return user ? <Profile name={user.name} avatar={user.avatar} /> : <Login />;
+
+     return user.name != '' ? (
+          <Profile name={user.name} avatar={user.avatar} handleSetState={handleSetState} />
+     ) : (
+          <Login handleSetState={handleSetState} />
+     );
 }
 
 export default App;

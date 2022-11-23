@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { login } from '../../api/index';
-import { loginProps } from '../../types/login'; //{email: string; password: string;}
+import { loginProps, setStateApp } from '../../types/login';
+//{email: string; password: string;} and {handleSetState: (n: {name=''; avatar=''}) => void;}
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './login.module.css';
 import Spinner from '../spinner/spinner';
 
-function Login() {
+function Login({ handleSetState }: setStateApp) {
      const {
           register,
           formState: { errors },
@@ -27,9 +28,9 @@ function Login() {
                     setLoading(false);
                     setErrorEmail(true);
                     return alert(dataUser.error);
-               } else {
+               } else if (dataUser.data != undefined) {
                     setLoading(false);
-                    return console.log(dataUser.data);
+                    return handleSetState(dataUser.data);
                }
           }
      };
