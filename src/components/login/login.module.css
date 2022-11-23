@@ -5,6 +5,8 @@
      align-items: center;
      padding: 22px 32px 40px;
 
+     z-index: 10;
+
      width: 250px;
      height: 340px;
 

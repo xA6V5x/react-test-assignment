@@ -16,30 +16,41 @@ body {
      justify-content: center;
 }
 
+/* ------ appContainer --------- */
+
+.appContainer {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+}
+
+/*--------- Company Logo ------- */
+
+.companyLogo {
+     position: absolute;
+     top: 7%;
+}
+
+/*------------- text----------- */
+
 .title {
      margin: 6px;
-     /* Heading/H5 */
      font-family: 'Inter';
      font-style: normal;
      font-weight: 600;
      font-size: 18px;
      line-height: 32px;
-
-     /* identical to box height, or 178% */
-
-     /* Dark/Alpha_80 */
      color: rgba(29, 31, 38, 0.8);
 }
 
 .sub_title {
-     /* Paragraph/P5 */
      font-family: 'Inter';
      font-style: normal;
      font-weight: 400;
      font-size: 14px;
      line-height: 22px;
-     /* or 157% */
-
      color: rgba(29, 31, 38, 0.8);
 }
 
@@ -49,19 +60,15 @@ body {
      display: flex;
      justify-content: center;
      align-items: center;
-
      width: 180px;
      height: 48px;
-
      font-family: 'Inter';
      cursor: pointer;
-
      color: #ffffff;
      background: #2f7bff;
      box-shadow: 0px 8px 24px -4px rgba(47, 123, 255, 0.5);
      border-radius: 12px;
      border: none;
-
      transition: 0.2s;
 }
 
@@ -76,6 +83,7 @@ body {
 .button:active {
      transition: 0s;
      box-shadow: none;
+     background-color: #0057ff;
 }
 
 .button label {
