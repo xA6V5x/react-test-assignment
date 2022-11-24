@@ -1,9 +1,22 @@
+import Swal from 'sweetalert2';
 import { profilePropsFunction } from '../../types/profile';
 import styles from './profile.module.css';
 
 function Profile({ name, avatar, handleSetState }: profilePropsFunction) {
      const handleFunction = () => {
-          handleSetState({ name: '', avatar: '' });
+          Swal.fire({
+               title: 'Are you sure?',
+               text: '¿Do you want to logout?',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#2f7bff',
+               cancelButtonColor: '#ff0044',
+               confirmButtonText: 'Logout',
+          }).then((result) => {
+               if (result.isConfirmed) {
+                    handleSetState({ name: '', avatar: '' });
+               }
+          });
      };
 
      return (

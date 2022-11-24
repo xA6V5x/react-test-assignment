@@ -5,6 +5,7 @@ import { loginProps, setStateApp } from '../../types/login';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './login.module.css';
 import Spinner from '../spinner/spinner';
+import Swal from 'sweetalert2';
 
 function Login({ handleSetState }: setStateApp) {
      const {
@@ -16,22 +17,36 @@ function Login({ handleSetState }: setStateApp) {
 
      const [errorEmail, setErrorEmail] = useState(false);
 
+     const [invalidUser, setInvalidUser] = useState(false);
+
      const [loading, setLoading] = useState(false);
 
      const onSubmit: SubmitHandler<loginProps> = async (data) => {
-          if (errorEmail === true) {
+          if (errorEmail === true || invalidUser === true) {
                return;
           } else {
                setLoading(true);
                let dataUser = await login(data);
                if (dataUser.error) {
                     setLoading(false);
-                    setErrorEmail(true);
-                    return alert(dataUser.error);
+                    setInvalidUser(true);
+                    return Swal.fire({
+                         icon: 'error',
+                         title: 'Oops...',
+                         text: dataUser.error,
+                         confirmButtonColor: '#2f7bff',
+                         confirmButtonText: 'Try again',
+                    });
                } else if (dataUser.data != undefined) {
                     setLoading(false);
                     return handleSetState(dataUser.data);
                }
+               return Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    confirmButtonColor: '#2f7bff',
+               });
           }
      };
 
@@ -39,7 +54,15 @@ function Login({ handleSetState }: setStateApp) {
      React.useEffect(() => {
           let email = watch('email');
 
-          if (email == '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+          watch((e) => {
+               setInvalidUser(false);
+          });
+
+          if (
+               email == '' ||
+               // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+               /^\S+@\S+$/.test(email)
+          ) {
                return setErrorEmail(false);
           } else {
                return setErrorEmail(true);
@@ -49,7 +72,7 @@ function Login({ handleSetState }: setStateApp) {
      return (
           <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
                <div className={styles.text_container}>
-                    <h5 className="title">Welcome, Stranger!</h5>
+                    <h2 className="title">Welcome, Stranger!</h2>
                     <label className="sub_title">
                          Please log in to this form if you wish to pass the exam.
                     </label>
@@ -57,7 +80,9 @@ function Login({ handleSetState }: setStateApp) {
                <div className={styles.container_input}>
                     <input
                          className={
-                              errors.email || errorEmail === true ? styles.inputError : styles.input
+                              errors.email || errorEmail === true || invalidUser === true
+                                   ? styles.inputError
+                                   : styles.input
                          }
                          autoComplete="off"
                          type="text"
@@ -67,15 +92,13 @@ function Login({ handleSetState }: setStateApp) {
                                    value: true,
                                    message: 'This field is required',
                               },
-                              // pattern: {
-                              //      value: /^\S+@\S+$/i,
-                              //      message: 'Incorrect email',
-                              // },
                          })}
                     />
                     <svg
                          className={
-                              errors.email || errorEmail === true ? styles.crossRed : styles.none
+                              errors.email || errorEmail === true || invalidUser === true
+                                   ? styles.crossRed
+                                   : styles.none
                          }
                          width="24"
                          height="24"
@@ -98,7 +121,11 @@ function Login({ handleSetState }: setStateApp) {
                </div>
                <div className={styles.container_input}>
                     <input
-                         className={errors.password ? styles.inputError : styles.input}
+                         className={
+                              errors.password || invalidUser === true
+                                   ? styles.inputError
+                                   : styles.input
+                         }
                          type="password"
                          placeholder="Password"
                          {...register('password', {
@@ -109,7 +136,11 @@ function Login({ handleSetState }: setStateApp) {
                          })}
                     />
                     <svg
-                         className={errors.password ? styles.crossRed : styles.none}
+                         className={
+                              errors.password || invalidUser === true
+                                   ? styles.crossRed
+                                   : styles.none
+                         }
                          width="24"
                          height="24"
                          viewBox="0 0 24 24"
