@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Login from './components/login/login';
-import CompanyLogo from './components/logo/logo';
+import { CompanyLogo } from './components/logos/logos';
 import Profile from './components/profile/profile';
 import { profileProps } from './types/profile';
 
