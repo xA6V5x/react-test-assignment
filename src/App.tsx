@@ -3,6 +3,9 @@ import Login from './components/login/login';
 import { CompanyLogo } from './components/logos/logos';
 import Profile from './components/profile/profile';
 import { profileProps } from './types/profile';
+import { joinClassNames } from './utils/joinClassNames';
+
+const stylesContainer = ['appContainer', 'appContainerHeight'];
 
 function App() {
      let userInitial = { name: '', avatar: '' };
@@ -14,7 +17,7 @@ function App() {
      };
 
      return (
-          <div className="appContainer">
+          <div className={joinClassNames(stylesContainer)}>
                <CompanyLogo />
                {user.name != '' && user.avatar != '' ? (
                     <Profile
