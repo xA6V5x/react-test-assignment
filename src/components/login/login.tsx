@@ -24,7 +24,8 @@ function Login({ handleSetState }: setStateApp) {
 
      const onSubmit: SubmitHandler<loginProps> = async (data) => {
           if (errorEmail === true || invalidUser === true) {
-               return;
+               let inputEmail = document.getElementById('inputEmail')?.focus();
+               return inputEmail;
           } else {
                setLoading(true);
                let dataUser = await login(data);
@@ -80,6 +81,7 @@ function Login({ handleSetState }: setStateApp) {
                </div>
                <div className={styles.container_input}>
                     <input
+                         id="inputEmail"
                          className={
                               errors.email || errorEmail === true || invalidUser === true
                                    ? styles.inputError
