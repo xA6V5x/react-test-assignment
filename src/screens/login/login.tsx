@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { login } from '../../api/index';
-import { loginProps, setStateApp } from '../../types/login';
+import { loginProps, setStateUser } from '../../types/login';
 //{email: string; password: string;} and {handleSetState: (n: {name=''; avatar=''}) => void;}
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './login.module.css';
-import Spinner from '../spinner/spinner';
+import Spinner from '../../components/spinner/spinner';
 import Swal from 'sweetalert2';
-import { CrossRed, ArrowWhite } from '../logos/logos';
+import { CrossRed, ArrowWhite } from '../../components/logos/logos';
 
-function Login({ handleSetState }: setStateApp) {
+function Login({ setUser }: setStateUser) {
      const {
           register,
           formState: { errors },
@@ -41,7 +41,7 @@ function Login({ handleSetState }: setStateApp) {
                     });
                } else if (dataUser.data != undefined) {
                     setLoading(false);
-                    return handleSetState(dataUser.data);
+                    return setUser(dataUser);
                }
                return Swal.fire({
                     icon: 'error',
@@ -62,13 +62,12 @@ function Login({ handleSetState }: setStateApp) {
 
           if (
                email == '' ||
-               // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+               // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
                /^\S+@\S+$/.test(email)
           ) {
                return setErrorEmail(false);
-          } else {
-               return setErrorEmail(true);
           }
+          return setErrorEmail(true);
      });
 
      return (

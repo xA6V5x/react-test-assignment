@@ -1,12 +1,5 @@
 import { loginProps } from '../types/login';
-
-type dataUserProps = {
-     data?: {
-          avatar: string;
-          name: string;
-     };
-     error?: string;
-};
+import { dataUserProps } from '../types/api';
 
 export function login({ email, password }: loginProps) {
      return new Promise<dataUserProps>((resolve) => {

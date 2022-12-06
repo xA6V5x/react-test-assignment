@@ -1,10 +1,12 @@
 export type profileProps = {
-     name: string;
-     avatar: string;
+     data?: {
+          name: string;
+          avatar: string;
+     };
 };
 
 export type profilePropsFunction = {
      name: string;
      avatar: string;
-     handleSetState: (n: profileProps) => void;
+     setUser: (n: profileProps) => void;
 };

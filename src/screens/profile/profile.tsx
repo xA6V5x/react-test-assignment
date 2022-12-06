@@ -1,9 +1,9 @@
 import Swal from 'sweetalert2';
 import { profilePropsFunction } from '../../types/profile';
-import { LogoutIcon } from '../logos/logos';
+import { LogoutIcon } from '../../components/logos/logos';
 import styles from './profile.module.css';
 
-function Profile({ name, avatar, handleSetState }: profilePropsFunction) {
+function Profile({ name, avatar, setUser }: profilePropsFunction) {
      const handleFunction = () => {
           Swal.fire({
                title: 'Are you sure?',
@@ -15,7 +15,7 @@ function Profile({ name, avatar, handleSetState }: profilePropsFunction) {
                confirmButtonText: 'Logout',
           }).then((result) => {
                if (result.isConfirmed) {
-                    handleSetState({ name: '', avatar: '' });
+                    setUser({});
                }
           });
      };

@@ -1,32 +1,22 @@
 import { useState } from 'react';
-import Login from './components/login/login';
+import Login from './screens/login/login';
 import { CompanyLogo } from './components/logos/logos';
-import Profile from './components/profile/profile';
-import { profileProps } from './types/profile';
+import Profile from './screens/profile/profile';
 import { joinClassNames } from './utils/joinClassNames';
+import { profileProps } from './types/profile';
 
-const stylesContainer = ['appContainer', 'appContainerHeight'];
+const stylesContainer = ['appContainer', 'appContainerSize'];
 
 function App() {
-     let userInitial = { name: '', avatar: '' };
-
-     const [user, setUser] = useState<profileProps>(userInitial);
-
-     const handleSetState = (user: profileProps) => {
-          setUser(user);
-     };
+     const [user, setUser] = useState<profileProps>({});
 
      return (
           <div className={joinClassNames(stylesContainer)}>
                <CompanyLogo />
-               {user.name != '' && user.avatar != '' ? (
-                    <Profile
-                         name={user.name}
-                         avatar={user.avatar}
-                         handleSetState={handleSetState}
-                    />
+               {user.data ? (
+                    <Profile name={user.data.name} avatar={user.data.avatar} setUser={setUser} />
                ) : (
-                    <Login handleSetState={handleSetState} />
+                    <Login setUser={setUser} />
                )}
           </div>
      );

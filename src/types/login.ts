@@ -5,6 +5,6 @@ export type loginProps = {
      password: string;
 };
 
-export type setStateApp = {
-     handleSetState: (n: profileProps) => void;
+export type setStateUser = {
+     setUser: (n: profileProps) => void;
 };
