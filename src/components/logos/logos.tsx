@@ -1,7 +1,7 @@
 export const CompanyLogo = () => {
      return (
           <svg
-               className="companyLogo"
+               className="company_logo"
                width="228"
                height="48"
                viewBox="0 0 228 48"

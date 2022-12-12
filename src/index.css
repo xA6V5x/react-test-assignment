@@ -17,21 +17,21 @@ body {
 
 /* ------ appContainer --------- */
 
-.appContainer {
+.app_container {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
 }
 
-.appContainerSize {
+.app_container_size {
      height: 100vh;
      width: 100vw;
 }
 
 /*--------- Company Logo ------- */
 
-.companyLogo {
+.company_logo {
      position: absolute;
      top: 7%;
 }
@@ -97,12 +97,12 @@ body {
 /* ----------- Responsive ------------ */
 
 @media (max-height: 600px) {
-     .companyLogo {
+     .company_logo {
           height: 100px;
           position: static;
           top: 0;
      }
-     .appContainerSize {
+     .app_container_size {
           width: auto;
           height: auto;
           padding-bottom: 80px;

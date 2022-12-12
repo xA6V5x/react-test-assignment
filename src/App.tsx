@@ -5,7 +5,7 @@ import Profile from './screens/profile/profile';
 import { joinClassNames } from './utils/joinClassNames';
 import { profileProps } from './types/profile';
 
-const stylesContainer = ['appContainer', 'appContainerSize'];
+const stylesContainer = ['app_container', 'app_container_size'];
 
 function App() {
      const [user, setUser] = useState<profileProps>({});
