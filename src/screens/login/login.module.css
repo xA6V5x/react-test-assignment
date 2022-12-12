@@ -6,7 +6,7 @@
      padding: 22px 32px 40px;
 
      width: 250px;
-     height: 340px;
+     min-height: 340px;
 
      background: #ffffff;
 
