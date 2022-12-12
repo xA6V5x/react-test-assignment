@@ -4,7 +4,7 @@ import { LogoutIcon } from '../../components/logos/logos';
 import styles from './profile.module.css';
 
 function Profile({ name, avatar, setUser }: profilePropsFunction) {
-     const handleFunction = () => {
+     const handleLogout = () => {
           Swal.fire({
                title: 'Are you sure?',
                text: '¿Do you want to logout?',
@@ -27,7 +27,7 @@ function Profile({ name, avatar, setUser }: profilePropsFunction) {
                <button
                     className="button"
                     onClick={() => {
-                         handleFunction();
+                         handleLogout();
                     }}
                >
                     <div style={{ display: 'flex', justifyContent: 'center', marginRight: '10px' }}>

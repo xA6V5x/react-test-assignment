@@ -16,14 +16,14 @@ function Login({ setUser }: setStateUser) {
           watch,
      } = useForm<loginProps>();
 
-     const [errorEmail, setErrorEmail] = useState(false);
+     const [isErrorEmail, setErrorEmail] = useState(false);
 
-     const [invalidUser, setInvalidUser] = useState(false);
+     const [isInvalidUser, setInvalidUser] = useState(false);
 
-     const [loading, setLoading] = useState(false);
+     const [isLoading, setLoading] = useState(false);
 
      const onSubmit: SubmitHandler<loginProps> = async (data) => {
-          if (errorEmail === true || invalidUser === true) {
+          if (isErrorEmail === true || isInvalidUser === true) {
                let inputEmail = document.getElementById('inputEmail')?.focus();
                return inputEmail;
           } else {
@@ -82,7 +82,7 @@ function Login({ setUser }: setStateUser) {
                     <input
                          id="inputEmail"
                          className={
-                              errors.email || errorEmail === true || invalidUser === true
+                              errors.email || isErrorEmail === true || isInvalidUser === true
                                    ? styles.inputError
                                    : styles.input
                          }
@@ -98,7 +98,7 @@ function Login({ setUser }: setStateUser) {
                     />
                     <div
                          className={
-                              errors.email || errorEmail === true || invalidUser === true
+                              errors.email || isErrorEmail === true || isInvalidUser === true
                                    ? styles.crossRed
                                    : styles.none
                          }
@@ -109,14 +109,14 @@ function Login({ setUser }: setStateUser) {
                     <div className={styles.container_errors}>
                          <label className={styles.errors}>
                               {errors.email?.message}
-                              {errorEmail == true ? 'Incorrect email' : ''}
+                              {isErrorEmail == true ? 'Incorrect email' : ''}
                          </label>
                     </div>
                </div>
                <div className={styles.container_input}>
                     <input
                          className={
-                              errors.password || invalidUser === true
+                              errors.password || isInvalidUser === true
                                    ? styles.inputError
                                    : styles.input
                          }
@@ -131,7 +131,7 @@ function Login({ setUser }: setStateUser) {
                     />
                     <div
                          className={
-                              errors.password || invalidUser === true
+                              errors.password || isInvalidUser === true
                                    ? styles.crossRed
                                    : styles.none
                          }
@@ -143,7 +143,7 @@ function Login({ setUser }: setStateUser) {
                     </div>
                </div>
 
-               {loading === false ? (
+               {isLoading === false ? (
                     <button className="button" type="submit">
                          <label style={{ marginRight: '10px' }}>Login</label>
                          <div style={{ display: 'flex', justifyContent: 'center' }}>
