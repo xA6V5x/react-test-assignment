@@ -4,7 +4,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './LoginScreen.module.css';
 import Spinner from '../../components/spinner/spinner';
 import Swal from 'sweetalert2';
-import { CrossRed, ArrowWhite } from '../../components/logos/logos';
+import { CrossRed, ArrowWhite, CompanyLogo } from '../../components/logos/logos';
+import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
 
 interface LoginScreenProps {
      onSuccess: (user: UserData) => void;
@@ -79,88 +80,91 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
      });
 
      return (
-          <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
-               <div className={styles.text_container}>
-                    <h2 className="title">Welcome, Stranger!</h2>
-                    <label className="sub_title">
-                         Please log in to this form if you wish to pass the exam.
-                    </label>
-               </div>
-               <div className={styles.container_input}>
-                    <input
-                         id="inputEmail"
-                         className={
-                              errors.email || isErrorEmail === true || isInvalidUser === true
-                                   ? styles.inputError
-                                   : styles.input
-                         }
-                         autoComplete="off"
-                         type="text"
-                         placeholder="Email"
-                         {...register('email', {
-                              required: {
-                                   value: true,
-                                   message: 'This field is required',
-                              },
-                         })}
-                    />
-                    <div
-                         className={
-                              errors.email || isErrorEmail === true || isInvalidUser === true
-                                   ? styles.crossRed
-                                   : styles.none
-                         }
-                    >
-                         <CrossRed />
-                    </div>
-
-                    <div className={styles.container_errors}>
-                         <label className={styles.errors}>
-                              {errors.email?.message}
-                              {isErrorEmail == true ? 'Incorrect email' : ''}
+          <ScreenContainer>
+               <CompanyLogo />
+               <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
+                    <div className={styles.text_container}>
+                         <h2 className="title">Welcome, Stranger!</h2>
+                         <label className="sub_title">
+                              Please log in to this form if you wish to pass the exam.
                          </label>
                     </div>
-               </div>
-               <div className={styles.container_input}>
-                    <input
-                         className={
-                              errors.password || isInvalidUser === true
-                                   ? styles.inputError
-                                   : styles.input
-                         }
-                         type="password"
-                         placeholder="Password"
-                         {...register('password', {
-                              required: {
-                                   value: true,
-                                   message: 'This field is required',
-                              },
-                         })}
-                    />
-                    <div
-                         className={
-                              errors.password || isInvalidUser === true
-                                   ? styles.crossRed
-                                   : styles.none
-                         }
-                    >
-                         <CrossRed />
-                    </div>
-                    <div className={styles.container_errors}>
-                         <label className={styles.errors}>{errors.password?.message}</label>
-                    </div>
-               </div>
-
-               {isLoading === false ? (
-                    <button className="button" type="submit">
-                         <label style={{ marginRight: '10px' }}>Login</label>
-                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                              <ArrowWhite />
+                    <div className={styles.container_input}>
+                         <input
+                              id="inputEmail"
+                              className={
+                                   errors.email || isErrorEmail === true || isInvalidUser === true
+                                        ? styles.inputError
+                                        : styles.input
+                              }
+                              autoComplete="off"
+                              type="text"
+                              placeholder="Email"
+                              {...register('email', {
+                                   required: {
+                                        value: true,
+                                        message: 'This field is required',
+                                   },
+                              })}
+                         />
+                         <div
+                              className={
+                                   errors.email || isErrorEmail === true || isInvalidUser === true
+                                        ? styles.crossRed
+                                        : styles.none
+                              }
+                         >
+                              <CrossRed />
                          </div>
-                    </button>
-               ) : (
-                    <Spinner />
-               )}
-          </form>
+
+                         <div className={styles.container_errors}>
+                              <label className={styles.errors}>
+                                   {errors.email?.message}
+                                   {isErrorEmail == true ? 'Incorrect email' : ''}
+                              </label>
+                         </div>
+                    </div>
+                    <div className={styles.container_input}>
+                         <input
+                              className={
+                                   errors.password || isInvalidUser === true
+                                        ? styles.inputError
+                                        : styles.input
+                              }
+                              type="password"
+                              placeholder="Password"
+                              {...register('password', {
+                                   required: {
+                                        value: true,
+                                        message: 'This field is required',
+                                   },
+                              })}
+                         />
+                         <div
+                              className={
+                                   errors.password || isInvalidUser === true
+                                        ? styles.crossRed
+                                        : styles.none
+                              }
+                         >
+                              <CrossRed />
+                         </div>
+                         <div className={styles.container_errors}>
+                              <label className={styles.errors}>{errors.password?.message}</label>
+                         </div>
+                    </div>
+
+                    {isLoading === false ? (
+                         <button className="button" type="submit">
+                              <label style={{ marginRight: '10px' }}>Login</label>
+                              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                   <ArrowWhite />
+                              </div>
+                         </button>
+                    ) : (
+                         <Spinner />
+                    )}
+               </form>
+          </ScreenContainer>
      );
 }

@@ -22,9 +22,6 @@ body {
      flex-direction: column;
      justify-content: center;
      align-items: center;
-}
-
-.app_container_size {
      height: 100vh;
      width: 100vw;
 }
@@ -102,7 +99,7 @@ body {
           position: static;
           top: 0;
      }
-     .app_container_size {
+     .app_container {
           width: auto;
           height: auto;
           padding-bottom: 80px;

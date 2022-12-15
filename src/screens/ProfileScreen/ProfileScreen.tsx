@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
-import { LogoutIcon } from '../../components/logos/logos';
+import { CompanyLogo, LogoutIcon } from '../../components/logos/logos';
 import styles from './ProfileScreen.module.css';
 import { UserData } from '../../api';
+import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
 
 interface ProfileScreenProps {
      user: UserData;
@@ -28,21 +29,30 @@ export function ProfileScreen({ user, onLogout }: ProfileScreenProps) {
      };
 
      return (
-          <div className={styles.container}>
-               <img className={styles.avatar} src={avatar} alt={name} />
-               <label className="title">That's it, {name}!</label>
-               <button
-                    className="button"
-                    onClick={() => {
-                         handleLogout();
-                    }}
-               >
-                    <div style={{ display: 'flex', justifyContent: 'center', marginRight: '10px' }}>
-                         <LogoutIcon />
-                    </div>
+          <ScreenContainer>
+               <CompanyLogo />
+               <div className={styles.container}>
+                    <img className={styles.avatar} src={avatar} alt={name} />
+                    <label className="title">That's it, {name}!</label>
+                    <button
+                         className="button"
+                         onClick={() => {
+                              handleLogout();
+                         }}
+                    >
+                         <div
+                              style={{
+                                   display: 'flex',
+                                   justifyContent: 'center',
+                                   marginRight: '10px',
+                              }}
+                         >
+                              <LogoutIcon />
+                         </div>
 
-                    <label>Logout</label>
-               </button>
-          </div>
+                         <label>Logout</label>
+                    </button>
+               </div>
+          </ScreenContainer>
      );
 }
