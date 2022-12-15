@@ -3,20 +3,20 @@ import Login from './screens/login/login';
 import { CompanyLogo } from './components/logos/logos';
 import Profile from './screens/profile/profile';
 import { joinClassNames } from './utils/joinClassNames';
-import { profileProps } from './types/profile';
+import { UserData } from './api';
 
 const stylesContainer = ['app_container', 'app_container_size'];
 
 function App() {
-     const [user, setUser] = useState<profileProps>({});
+     const [user, setUser] = useState<UserData>();
 
      return (
           <div className={joinClassNames(stylesContainer)}>
                <CompanyLogo />
-               {user.data ? (
-                    <Profile name={user.data.name} avatar={user.data.avatar} setUser={setUser} />
+               {user ? (
+                    <Profile user={user} onLogout={() => setUser(undefined)} />
                ) : (
-                    <Login setUser={setUser} />
+                    <Login onSuccess={setUser} />
                )}
           </div>
      );

@@ -2,8 +2,16 @@ import Swal from 'sweetalert2';
 import { profilePropsFunction } from '../../types/profile';
 import { LogoutIcon } from '../../components/logos/logos';
 import styles from './profile.module.css';
+import { UserData } from '../../api';
 
-function Profile({ name, avatar, setUser }: profilePropsFunction) {
+interface ProfileScreenProps {
+     user: UserData;
+     onLogout: () => void;
+}
+
+function Profile({ user, onLogout }: ProfileScreenProps) {
+     const { name, avatar } = user;
+
      const handleLogout = () => {
           Swal.fire({
                title: 'Are you sure?',
@@ -15,7 +23,7 @@ function Profile({ name, avatar, setUser }: profilePropsFunction) {
                confirmButtonText: 'Logout',
           }).then((result) => {
                if (result.isConfirmed) {
-                    setUser({});
+                    onLogout();
                }
           });
      };

@@ -1,9 +1,9 @@
-export type profileProps = {
-     data?: {
-          name: string;
-          avatar: string;
-     };
-};
+export type profileProps =
+     | {
+            name: string;
+            avatar: string;
+       }
+     | {};
 
 export type profilePropsFunction = {
      name: string;

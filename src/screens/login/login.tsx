@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import { login } from '../../api/index';
-import { loginProps, setStateUser } from '../../types/login';
-//{email: string; password: string;} and {handleSetState: (n: {name=''; avatar=''}) => void;}
+import { login, UserData } from '../../api/index';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './login.module.css';
 import Spinner from '../../components/spinner/spinner';
 import Swal from 'sweetalert2';
 import { CrossRed, ArrowWhite } from '../../components/logos/logos';
 
-function Login({ setUser }: setStateUser) {
+interface LoginScreenProps {
+     onSuccess: (user: UserData) => void;
+}
+
+interface loginSendValues {
+     email: string;
+     password: string;
+}
+
+function Login({ onSuccess }: LoginScreenProps) {
      const {
           register,
           formState: { errors },
           handleSubmit,
           watch,
-     } = useForm<loginProps>();
+     } = useForm<loginSendValues>();
 
      const [isErrorEmail, setErrorEmail] = useState(false);
 
@@ -22,7 +29,7 @@ function Login({ setUser }: setStateUser) {
 
      const [isLoading, setLoading] = useState(false);
 
-     const onSubmit: SubmitHandler<loginProps> = async (data) => {
+     const onSubmit: SubmitHandler<loginSendValues> = async (data) => {
           if (isErrorEmail === true || isInvalidUser === true) {
                let inputEmail = document.getElementById('inputEmail')?.focus();
                return inputEmail;
@@ -39,9 +46,10 @@ function Login({ setUser }: setStateUser) {
                          confirmButtonColor: '#2f7bff',
                          confirmButtonText: 'Try again',
                     });
-               } else if (dataUser.data != undefined) {
+               } else if (dataUser.data) {
                     setLoading(false);
-                    return setUser(dataUser);
+                    const user = dataUser.data;
+                    return onSuccess(user);
                }
                return Swal.fire({
                     icon: 'error',
