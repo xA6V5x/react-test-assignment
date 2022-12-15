@@ -1,7 +1,6 @@
 import Swal from 'sweetalert2';
-import { profilePropsFunction } from '../../types/profile';
 import { LogoutIcon } from '../../components/logos/logos';
-import styles from './profile.module.css';
+import styles from './ProfileScreen.module.css';
 import { UserData } from '../../api';
 
 interface ProfileScreenProps {
@@ -9,7 +8,7 @@ interface ProfileScreenProps {
      onLogout: () => void;
 }
 
-function Profile({ user, onLogout }: ProfileScreenProps) {
+export function ProfileScreen({ user, onLogout }: ProfileScreenProps) {
      const { name, avatar } = user;
 
      const handleLogout = () => {
@@ -47,5 +46,3 @@ function Profile({ user, onLogout }: ProfileScreenProps) {
           </div>
      );
 }
-
-export default Profile;
