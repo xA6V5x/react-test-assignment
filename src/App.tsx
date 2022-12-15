@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Login from './screens/login/login';
 import { CompanyLogo } from './components/logos/logos';
+import { LoginScreen } from './screens/LoginScreen';
 import Profile from './screens/profile/profile';
 import { joinClassNames } from './utils/joinClassNames';
 import { UserData } from './api';
@@ -16,7 +16,7 @@ function App() {
                {user ? (
                     <Profile user={user} onLogout={() => setUser(undefined)} />
                ) : (
-                    <Login onSuccess={setUser} />
+                    <LoginScreen onSuccess={setUser} />
                )}
           </div>
      );

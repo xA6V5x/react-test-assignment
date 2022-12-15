@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login, UserData } from '../../api/index';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styles from './login.module.css';
+import styles from './LoginScreen.module.css';
 import Spinner from '../../components/spinner/spinner';
 import Swal from 'sweetalert2';
 import { CrossRed, ArrowWhite } from '../../components/logos/logos';
@@ -15,7 +15,7 @@ interface loginSendValues {
      password: string;
 }
 
-function Login({ onSuccess }: LoginScreenProps) {
+export function LoginScreen({ onSuccess }: LoginScreenProps) {
      const {
           register,
           formState: { errors },
@@ -164,5 +164,3 @@ function Login({ onSuccess }: LoginScreenProps) {
           </form>
      );
 }
-
-export default Login;
