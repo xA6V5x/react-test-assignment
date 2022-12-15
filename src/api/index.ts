@@ -1,8 +1,22 @@
-import { loginProps } from '../types/login';
-import { dataUserProps } from '../types/api';
+export interface UserData {
+     avatar: string;
+     name: string;
+}
 
-export function login({ email, password }: loginProps) {
-     return new Promise<dataUserProps>((resolve) => {
+interface LoginRequest {
+     email: string;
+     password: string;
+}
+
+type Response<T> = {
+     data?: T;
+     error?: string;
+};
+
+type LoginResponse = Response<UserData>;
+
+export function login({ email, password }: LoginRequest) {
+     return new Promise<LoginResponse>((resolve) => {
           setTimeout(() => {
                if (email === 'elon@mercdev.com' && password === 'twitter') {
                     resolve({ data: { avatar: '/avatar.jpeg', name: 'Elon' } });
