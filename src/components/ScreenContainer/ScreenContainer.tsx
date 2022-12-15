@@ -1,5 +1,7 @@
-interface ScreenProps extends React.ComponentProps<'div'> {}
+import styles from './ScreenContainer.module.css';
 
-export function ScreenContainer({ className, ...props }: ScreenProps) {
-     return <div {...props} className="app_container" />;
+interface ScreenContainerProps extends React.ComponentProps<'div'> {}
+
+export function ScreenContainer({ className, ...props }: ScreenContainerProps) {
+     return <div {...props} className={styles.app_container} />;
 }
