@@ -157,18 +157,13 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
 
                     {isLoading === false ? (
                          <Button
+                              type="submit"
                               name="Login"
                               icon={<ArrowWhite />}
                               iconPosition="right"
                               className="button"
                          />
                     ) : (
-                         // <button className="button" type="submit">
-                         //      <label style={{ marginRight: '10px' }}>Login</label>
-                         //      <div style={{ display: 'flex', justifyContent: 'center' }}>
-                         //           <ArrowWhite />
-                         //      </div>
-                         // </button>
                          <Spinner />
                     )}
                </form>
