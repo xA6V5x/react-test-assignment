@@ -3,5 +3,5 @@ type subTitleProps = {
 };
 
 export function SubTitle({ subTitle }: subTitleProps) {
-     return <label className="title">{subTitle}</label>;
+     return <label className="sub_title">{subTitle}</label>;
 }
