@@ -8,6 +8,7 @@ import { CrossRed, ArrowWhite, CompanyLogo } from '../../components/logos/logos'
 import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
 import { Title } from '../../components/Title';
 import { SubTitle } from '../../components/SubTitle';
+import { Button } from '../../components/Button/Button';
 
 interface LoginScreenProps {
      onSuccess: (user: UserData) => void;
@@ -155,13 +156,19 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
                     </div>
 
                     {isLoading === false ? (
-                         <button className="button" type="submit">
-                              <label style={{ marginRight: '10px' }}>Login</label>
-                              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                   <ArrowWhite />
-                              </div>
-                         </button>
+                         <Button
+                              name="Login"
+                              icon={<ArrowWhite />}
+                              iconPosition="right"
+                              className="button"
+                         />
                     ) : (
+                         // <button className="button" type="submit">
+                         //      <label style={{ marginRight: '10px' }}>Login</label>
+                         //      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                         //           <ArrowWhite />
+                         //      </div>
+                         // </button>
                          <Spinner />
                     )}
                </form>
