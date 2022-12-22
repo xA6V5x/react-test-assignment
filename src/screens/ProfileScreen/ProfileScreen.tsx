@@ -4,6 +4,7 @@ import styles from './ProfileScreen.module.css';
 import { UserData } from '../../api';
 import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
 import { Title } from '../../components/Title';
+import { Button } from '../../components/Button/Button';
 
 interface ProfileScreenProps {
      user: UserData;
@@ -35,24 +36,16 @@ export function ProfileScreen({ user, onLogout }: ProfileScreenProps) {
                <div className={styles.container}>
                     <img className={styles.avatar} src={avatar} alt={name} />
                     <Title title={`That's it, ${name}!`} />
-                    <button
-                         className="button"
+
+                    <Button
+                         name="Logout"
                          onClick={() => {
                               handleLogout();
                          }}
-                    >
-                         <div
-                              style={{
-                                   display: 'flex',
-                                   justifyContent: 'center',
-                                   marginRight: '10px',
-                              }}
-                         >
-                              <LogoutIcon />
-                         </div>
-
-                         <label>Logout</label>
-                    </button>
+                         icon={<LogoutIcon />}
+                         iconPosition="left"
+                         className="button"
+                    />
                </div>
           </ScreenContainer>
      );
