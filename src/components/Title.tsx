@@ -3,5 +3,5 @@ type titleProps = {
 };
 
 export function Title({ title }: titleProps) {
-     return <label className="title">{title}</label>;
+     return <h2 className="title">{title}</h2>;
 }

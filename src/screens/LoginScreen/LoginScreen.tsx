@@ -6,6 +6,7 @@ import Spinner from '../../components/spinner/spinner';
 import Swal from 'sweetalert2';
 import { CrossRed, ArrowWhite, CompanyLogo } from '../../components/logos/logos';
 import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
+import { Title } from '../../components/Title';
 
 interface LoginScreenProps {
      onSuccess: (user: UserData) => void;
@@ -84,7 +85,7 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
                <CompanyLogo />
                <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.text_container}>
-                         <h2 className="title">Welcome, Stranger!</h2>
+                         <Title title={'Welcome, Stranger!'} />
                          <label className="sub_title">
                               Please log in to this form if you wish to pass the exam.
                          </label>

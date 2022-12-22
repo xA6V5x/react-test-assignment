@@ -3,6 +3,7 @@ import { CompanyLogo, LogoutIcon } from '../../components/logos/logos';
 import styles from './ProfileScreen.module.css';
 import { UserData } from '../../api';
 import { ScreenContainer } from '../../components/ScreenContainer/ScreenContainer';
+import { Title } from '../../components/Title';
 
 interface ProfileScreenProps {
      user: UserData;
@@ -33,7 +34,7 @@ export function ProfileScreen({ user, onLogout }: ProfileScreenProps) {
                <CompanyLogo />
                <div className={styles.container}>
                     <img className={styles.avatar} src={avatar} alt={name} />
-                    <label className="title">That's it, {name}!</label>
+                    <Title title={`That's it, ${name}!`} />
                     <button
                          className="button"
                          onClick={() => {
