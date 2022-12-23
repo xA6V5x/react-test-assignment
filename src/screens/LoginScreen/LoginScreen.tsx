@@ -27,16 +27,19 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
           watch,
      } = useForm<loginSendValues>();
 
-     const [isErrorEmail, setErrorEmail] = useState(false);
+     const [isLoading, setLoading] = useState(false);
 
      const [isInvalidUser, setInvalidUser] = useState(false);
 
-     const [isLoading, setLoading] = useState(false);
+     React.useEffect(() => {
+          watch(() => {
+               setInvalidUser(false);
+          });
+     });
 
      const onSubmit: SubmitHandler<loginSendValues> = async (data) => {
-          if (isErrorEmail === true || isInvalidUser === true) {
-               let inputEmail = document.getElementById('inputEmail')?.focus();
-               return inputEmail;
+          if (isInvalidUser) {
+               return;
           } else {
                setLoading(true);
                let dataUser = await login(data);
@@ -64,24 +67,6 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
           }
      };
 
-     // Callback version of watch
-     React.useEffect(() => {
-          let email = watch('email');
-
-          watch((e) => {
-               setInvalidUser(false);
-          });
-
-          if (
-               email == '' ||
-               // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-               /^\S+@\S+$/.test(email)
-          ) {
-               return setErrorEmail(false);
-          }
-          return setErrorEmail(true);
-     });
-
      return (
           <ScreenContainer>
                <CompanyLogo />
@@ -94,9 +79,7 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
                          <input
                               id="inputEmail"
                               className={
-                                   errors.email || isErrorEmail === true || isInvalidUser === true
-                                        ? styles.inputError
-                                        : styles.input
+                                   errors.email || isInvalidUser ? styles.inputError : styles.input
                               }
                               autoComplete="off"
                               type="text"
@@ -106,29 +89,28 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
                                         value: true,
                                         message: 'This field is required',
                                    },
+                                   pattern: {
+                                        value: /^\S+@\S+$/i,
+                                        message: 'Incorrect email',
+                                   },
                               })}
                          />
                          <div
                               className={
-                                   errors.email || isErrorEmail === true || isInvalidUser === true
-                                        ? styles.crossRed
-                                        : styles.none
+                                   errors.email || isInvalidUser ? styles.crossRed : styles.none
                               }
                          >
                               <CrossRed />
                          </div>
 
                          <div className={styles.container_errors}>
-                              <label className={styles.errors}>
-                                   {errors.email?.message}
-                                   {isErrorEmail == true ? 'Incorrect email' : ''}
-                              </label>
+                              <label className={styles.errors}>{errors.email?.message}</label>
                          </div>
                     </div>
                     <div className={styles.container_input}>
                          <input
                               className={
-                                   errors.password || isInvalidUser === true
+                                   errors.password || isInvalidUser
                                         ? styles.inputError
                                         : styles.input
                               }
@@ -143,9 +125,7 @@ export function LoginScreen({ onSuccess }: LoginScreenProps) {
                          />
                          <div
                               className={
-                                   errors.password || isInvalidUser === true
-                                        ? styles.crossRed
-                                        : styles.none
+                                   errors.password || isInvalidUser ? styles.crossRed : styles.none
                               }
                          >
                               <CrossRed />
